@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidKeyStore JCA Checker</string>
+    <string name="jca_compromised">AndroidKeyStore JCA is COMPROMISED!</string>
+    <string name="jca_ok">AndroidKeystore JCA is OK, nothing to worry about :)</string>
+    <string name="hardware_keystore_support">Hardware key storage support: %s</string>
+    <string name="about">More info about AndroidKeyStore issues and this project: https://github.com/jermeyyy/androidkeystore-jca-compromised</string>
+</resources>
