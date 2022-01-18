@@ -2,19 +2,9 @@ package pl.jermey.compromisedjca
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyInfo
-import android.security.keystore.KeyProperties
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import pl.jermey.compromisedjca.databinding.MainActivityBinding
-import java.security.KeyFactory
-import java.security.KeyPair
-import java.security.KeyPairGenerator
-import java.security.KeyStore
-import javax.security.auth.x500.X500Principal
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,10 +18,12 @@ class MainActivity : AppCompatActivity() {
         val result = androidKeyStoreJCACheck.check()
         if (result.RSAKeyGenCompromised) {
             binding.statusText.text = getString(R.string.jca_compromised)
+            binding.statusText.setTextColor(getColor(R.color.alert))
             binding.statusIcon.setImageResource(R.drawable.ic_warning)
             binding.statusIcon.imageTintList = ColorStateList.valueOf(getColor(R.color.alert))
         } else {
             binding.statusText.text = getString(R.string.jca_ok)
+            binding.statusText.setTextColor(getColor(R.color.ok))
             binding.statusIcon.setImageResource(R.drawable.ic_check)
             binding.statusIcon.imageTintList = ColorStateList.valueOf(getColor(R.color.ok))
         }
@@ -39,5 +31,15 @@ class MainActivity : AppCompatActivity() {
             R.string.hardware_keystore_support,
             result.hardwareKeyStorageSupported.toString()
         )
+        val systemInfoService = SystemInfoService()
+        val (osVersion, securityPatch, deviceModel, deviceManufacturer) = systemInfoService.getSystemInfo()
+        binding.systemInfo.text =
+            getString(
+                R.string.system_info,
+                osVersion,
+                securityPatch,
+                deviceManufacturer,
+                deviceModel
+            )
     }
 }

@@ -4,4 +4,5 @@
     <string name="jca_ok">AndroidKeystore JCA is OK, nothing to worry about :)</string>
     <string name="hardware_keystore_support">Hardware key storage support: %s</string>
     <string name="about">More info about AndroidKeyStore issues and this project: https://github.com/jermeyyy/androidkeystore-jca-compromised</string>
+    <string name="system_info">Device info:\nOS version: %s\nSecurity patch: %s\nManufacturer: %s\nModel: %s</string>
 </resources>
